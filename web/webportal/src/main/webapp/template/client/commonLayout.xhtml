@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+	<h:head>
+		<h:outputStylesheet name="aot-style-base.css" library="css" />		
+		<h:outputScript library="js" name="base-functions.js" />
+		<h:outputStylesheet name="bootstrap.min.css" library="css" />
+		<h:outputStylesheet name="fontawesome.min.css" library="css" />
+		<h:outputScript library="js" name="bootstrap.min.js" />
+	</h:head>
+    
+    <h:body>
+
+	<div id="page">
+		
+		<div id="header">
+			<ui:insert name="header" >
+				<ui:include src="/template/client/commonHeader.xhtml" />
+			</ui:insert>
+	    </div>
+	    
+		 <div id="content" class="container-fluid pt-4  ">
+				<div class="row">
+						<div class="col-sm-1"></div>
+					<div class="col-sm-10">
+		   	<ui:insert name="content" >
+		   		<ui:include src="/template/client/commonContent.xhtml" />
+			   </ui:insert>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	    </div>
+    	
+    </div>
+    
+    </h:body>
+
+</html>

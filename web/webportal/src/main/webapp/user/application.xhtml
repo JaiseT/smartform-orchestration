@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Task Portal</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<f:metadata>
+          <f:event type="preRenderView" listener="#{userTask.getAllMappedForms}"/>
+      </f:metadata>
+</h:head>
+<h:body>
+<ui:composition template="/template/client/commonLayout.xhtml">
+<ui:define name="content">
+    <h:form id="activeForm" role="form">
+	<div class="row">
+							
+							<div class="col-sm-12 ">
+									<div class="ui-card">
+											<div class="col-sm-12"><h3>Start Your Application</h3></div>
+<div class="container">
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step col-xs-3"> 
+                <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                <p><small>Category</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3"> 
+                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                <p><small>Form</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3"> 
+                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                <p><small>Fill-in</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3"> 
+                <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                <p><small>Submit</small></p>
+            </div>
+        </div>
+    </div>
+    
+   
+        <div class="panel panel-primary setup-content" id="step-1">
+            <div class="panel-heading">
+                 <h3 class="panel-title">Choose a Category</h3>
+            </div>
+            <div class="panel-body padding-100"><br/>
+					<label for="name"><b>I apply for </b></label><br/><br/>
+							<p:selectOneRadio id="category" valueChangeListener="#{userTask.getForms}"  value="#{userTask.category}" required="required"   layout="pageDirection" styleClass="form-radio">
+											<f:selectItems value="#{userTask.getFormset()}" />
+										<p:ajax update="activeForm:forms" event="valueChange" />
+							</p:selectOneRadio>
+                
+                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+        </div>
+        
+        <div class="panel panel-primary setup-content" id="step-2">
+            <div class="panel-heading">
+                 <h3 class="panel-title">Select a Form</h3>
+            </div>
+            <div class="panel-body padding-100"><br/>
+				<label for="name"><b>Please select one of the options below to start your application.</b></label>
+					<br/><br/>
+				<p:selectOneRadio id="forms" layout="pageDirection" valueChangeListener="#{userTask.getDocumentURI}" value="#{userTask.formName}" required="required"   styleClass="form-radio">
+								<f:selectItems value="#{userTask.filterdForms}"  />
+								<p:ajax update="activeForm:itrForm" event="valueChange" />
+					</p:selectOneRadio>	
+						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+				</div>
+					
+        </div>        
+        <div class="panel panel-primary setup-content" id="step-3">
+            <div class="panel-heading">
+                
+            </div>
+            <div class="panel-body padding-100">
+					<div class="panel-body padding-100">
+		<h:panelGroup id="itrForm">
+		<iframe id="smartform" name="pageframe" src="#{userTask.formURI}" height="700" width="100%" style="border:0px;" >
+		</iframe>
+		</h:panelGroup>
+				<br/><br/>
+			<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+			</div>
+        </div>
+        </div>
+        <div class="panel panel-primary setup-content" id="step-4">
+            <div class="panel-heading">
+                 <h3 class="panel-title">Acknowledgement</h3>
+            </div>
+            <div class="panel-body">
+					I hereby acknowledge the digital submission of application. 
+
+                <h:commandButton value="Submit For Approval" action="#{userTask.submitForReview(userTask.formURI)}" class="btn btn-primary nextBtn pull-right">
+				</h:commandButton>		
+            </div>
+        </div>
+  
+</div>
+</div>
+	</div>
+	</div>
+				
+			
+
+	</h:form>
+
+ </ui:define>
+
+</ui:composition>
+</h:body>
+</html>

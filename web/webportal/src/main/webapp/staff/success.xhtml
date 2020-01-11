@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:oc="http://java.sun.com/jsf/composite/components/orchestration"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+	<title>Task Portal</title>
+	<h:outputStylesheet library="css" name="aot-style-base.css" />
+</h:head>
+<h:body>
+<ui:composition template="/template/staff/commonLayout.xhtml">
+<ui:define name="content">
+	<div class="alert alert-success alert-dismissible fade show" role="alert" id="successalert">
+	 Application Approved.
+</div>
+ <table class="table table-bordered">
+  <tbody>
+	 <tr>
+      <td><b>Process Description</b></td>
+      <td>One step approval</td>
+    </tr>
+    <tr>
+      <td><b>Process Id</b></td>
+      <td>e26648e3-7e0e-4917-abba-72533f5ebf61</td>
+    </tr>	
+    <tr>
+      <td><b>Status</b></td>
+      <td>Completed</td>
+    </tr>
+  </tbody>
+</table>
+ </ui:define>
+</ui:composition>
+</h:body>
+</html>

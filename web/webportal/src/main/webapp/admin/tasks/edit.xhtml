@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Edit Task</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{updateTask.task}"
+			converter="#{taskConverter}"
+			converterMessage="Unknown task, please use a link from within the system."
+			required="true"
+			requiredMessage="Bad request, please use a link from within the system." />
+	</f:metadata>
+	<h:form id="updateTaskForm" rendered="#{not empty updateTask.task}">
+		
+		<p:outputPanel id="editPanel"
+						style="display:block">
+						<h3>Update Task Details:</h3>
+						<table>
+							<tr>
+							    <td style="width: 10%;">Task Id:</td>
+								<td style="width: 30%;">#{updateTask.task.id}</td>
+								<td style="width: 10%;">Name:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.name}"/></td>
+							</tr>
+							<tr>
+							
+								<td style="width: 10%;">Assignee:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.assignee}"/></td>
+								<td style="width: 10%;">Due Date:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.due}"/></td>
+							</tr>
+							<tr>
+							
+								<td style="width: 10%;">Follow Up:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.followUp}"/></td>
+								<td style="width: 10%;">Delegation State:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.delegationState}"/></td>
+								
+							</tr>
+							<tr>
+								<td style="width: 10%;">Description:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.description}"/></td>
+								<td style="width: 10%;">Execution Id:</td>
+								<td style="width: 30%;">#{updateTask.task.executionId}</td>
+								
+							</tr>
+							<tr>
+								<td style="width: 10%;">Owner:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.owner}"/></td>
+								<td style="width: 10%;">Parent Task Id:</td>
+								<td style="width: 30%;">#{updateTask.task.parentTaskId}</td>
+							</tr>
+							<tr>
+								<td style="width: 10%;">Priority:</td>
+								<td style="width: 20%;">#{updateTask.task.priority}</td>
+								<td style="width: 10%;">Process Definition Id:</td>
+								<td style="width: 30%;">#{updateTask.task.processDefinitionId}</td>
+							</tr>
+							<tr>
+								<td style="width: 10%;">Process Instance Id:</td>
+								<td style="width: 20%;">#{updateTask.task.processInstanceId}</td>
+								<td style="width: 10%;">Task Definition Key:</td>
+								<td style="width: 30%;">#{updateTask.task.taskDefinitionKey}</td>
+							</tr>
+							<tr>
+								<td style="width: 10%;">Case Execution Id:</td>
+								<td style="width: 20%;">#{updateTask.task.caseExecutionId}</td>
+								<td style="width: 10%;">Case Instance Id:</td>
+								<td style="width: 30%;">#{updateTask.task.caseInstanceId}</td>
+							</tr>
+							<tr>
+								<td style="width: 10%;">Case Definition Id:</td>
+								<td style="width: 20%;">#{updateTask.task.caseDefinitionId}</td>
+								<td style="width: 10%;">Suspended:</td>
+								<td style="width: 30%;"><h:inputText value="#{updateTask.task.suspended}"/></td>
+							</tr>
+						</table>
+					</p:outputPanel>
+					<p:commandButton id="update-task" value="Save" action="#{updateTask.update}"
+	                update="updateTaskForm:editPanel" oncomplete="cd.show();" />
+	                <p:commandButton id="cancel-update" value="Cancel" 
+	                process="@this" action="#{updateTask.updateTask}"
+	                update="updateTaskForm:editPanel" oncomplete=":updateTaskForm" />
+
+	</h:form>
+</h:body>
+</html>

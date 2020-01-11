@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:oc="http://java.sun.com/jsf/composite/components/orchestration"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+	<title>Task Portal</title>
+</h:head>
+<h:body>
+<ui:composition template="/template/client/commonLayout.xhtml">
+<ui:define name="content">
+	<f:metadata>
+          <f:event type="preRenderView" listener="#{auditTask.loadConfiguration}"/>
+      </f:metadata>
+    <h:form id="summaryForm">
+			 <oc:TaskGrid dataMap="#{auditTask.filteredTaskList}" />
+	</h:form>
+ </ui:define>
+ 
+
+</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    
+    <composite:interface>
+    	<composite:attribute name="task" required="true"/>  
+    </composite:interface>
+
+    <composite:implementation>
+		<!-- Modal -->
+<div class="modal fade" id="#{cc.attrs.task.id}_staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Task Summary</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      
+        </button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td><b>Task Id</b></td>
+      <td>#{cc.attrs.task.id}</td>
+    </tr>
+	<tr>
+      <td><b>Start Date</b></td>
+      <td>#{cc.attrs.task.startTime}</td>
+    </tr>
+    <tr>
+      <td><b>End Date</b></td>
+      <td>#{cc.attrs.task.endTime}</td>
+    </tr>
+     <tr>
+      <td><b>Duration</b></td>
+      <td>#{cc.attrs.task.duration}</td>
+    </tr>
+    <tr>
+      <td><b>Group Name</b></td>
+      <td>#{cc.attrs.task.groupName}</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>	
+    </composite:implementation>
+</html>

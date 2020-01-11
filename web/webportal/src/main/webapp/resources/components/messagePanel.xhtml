@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+   
+	<composite:interface>
+		<composite:attribute name="messages" required="true" />  
+    </composite:interface>
+	
+    <composite:implementation>
+	<h:form>
+	<div class="container"> 
+	<h:panelGroup id="successMessage" rendered="#{cc.attrs.messages.containsKey('SUCCESS')}">
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&#215;</button>
+			<strong>#{cc.attrs.messages.get('SUCCESS')}</strong>
+		</div>
+
+	</h:panelGroup>
+		<h:panelGroup id="errMessage" rendered="#{cc.attrs.messages.containsKey('FAILURE')}">
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert">&#215;</button>
+			<ul>
+					<ui:repeat var="message" value="#{cc.attrs.messages.get('FAILURE')}">
+						<li>#{message}</li>
+					</ui:repeat>
+				</ul>
+		</div>			
+		</h:panelGroup>
+	</div>
+	</h:form>
+    </composite:implementation>
+</html>

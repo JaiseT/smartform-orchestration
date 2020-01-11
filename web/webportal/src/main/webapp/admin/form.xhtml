@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/components">
+
+<h:head>
+	<title>Form Manager</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{formmanager.loadConfiguration}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition template="/template/admin/commonLayout.xhtml">
+		<ui:define name="content">
+			<h:form id="frmManagerForm" prependId="false">
+				
+	<div class="row mt-4" id="testdiv">
+						<div class="col-sm-12">
+								
+								<div class="ui-card">
+										<div class="col-sm-12"><h3>List of Form</h3></div>
+							<div class="fa-pull-right">
+							<p:commandLink  id="addLink" actionListener="#{formmanager.reset}" style="float:right;" immediate="true">
+							<p:ajax event="click" />
+							<i class="fa fa-plus-circle" style="color: #0000ff;padding:5px;font-weight:bold;"  data-toggle="modal" data-target="#formWrapper">&#160;Add</i>
+						</p:commandLink>									
+							</div>
+							
+									
+									
+		<p:dataTable id="formTable" var="entry" value="#{formmanager.formList}" widgetVar="form" rowClass="data-table-row" 
+        styleClass="table table-hover bg-white"
+			  >
+				<p:column sortBy="#{entry.formset.formsetName}" filterBy="#{entry.formset.formsetName}" filterMatchMode="contains" headerText="Formset Name">
+				  <h:outputText value="#{entry.formset.formsetName}"/>
+			  </p:column>
+			  <p:column sortBy="#{entry.formName}" filterBy="#{entry.formName}" filterMatchMode="contains" headerText="Form Name">
+				  <h:outputText value="#{entry.formName}"/>
+			  </p:column>
+			  <p:column sortBy="#{entry.formDescription}" filterBy="#{entry.formDescription}" filterMatchMode="contains" headerText="Description">
+				  <h:outputText value="#{entry.formDescription}"/>
+			  </p:column>
+			  <p:column sortBy="#{entry.status}" filterBy="#{entry.status}" filterMatchMode="contains" headerText="Status">
+				  <h:outputText value="#{entry.status}"/>
+			  </p:column>
+			  <p:column sortBy="#{entry.comments}" filterBy="#{entry.comments}" filterMatchMode="contains" headerText="Notes">
+				  <h:outputText value="#{entry.comments}"/>
+			  </p:column>
+			   <p:column headerText="Action" >
+             
+						<p:commandLink  id="editLink" actionListener="#{formmanager.populate(entry)}" style="float:right;" >
+							<p:ajax event="click" oncomplete="openModal('formWrapper')"/>
+							<i class="fa fa-edit fa-color"></i>
+						</p:commandLink>	
+			</p:column>
+			  </p:dataTable>
+					
+
+							</div>
+						</div>
+					</div>
+		
+					<div class="modal fade" id="formWrapper" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      
+        </button>
+      </div>
+      <div class="modal-body">
+				<div class="row">
+							
+							<div class="col-sm-12 ">
+					
+					<h:panelGroup id="panel" style="padding-bottom:3%">
+					<cc:messagePanel id="msgPanel" messages="#{formmanager.msgList}"/>
+					<div class="col-sm-12">
+					<div class="form-row">
+										<div class="form-group col-md-4">
+										<label for="status">Formset<font color="red">*</font></label>
+										<h:selectOneMenu id="formset"
+								value="#{formmanager.selectedFormset}" valueChangeListener="#{formmanager.fetchOrbeonForms}" styleClass="form-control">
+								<f:selectItem itemLabel="Please select a Formset" itemValue="NA" />
+								<f:selectItems value="#{formmanager.formsetList}"
+									var="fsItem" itemLabel="#{fsItem.formsetName}"
+									itemValue="#{fsItem.formsetId}_#{fsItem.formsetName}" />
+									<p:ajax event="change" update="form" />
+							</h:selectOneMenu>	
+										</div>
+					<div class="form-group col-md-4">
+											<label for="status">Form<font color="red">*</font></label>
+											<h:selectOneMenu id="form"
+								value="#{formmanager.selectedForm}" styleClass="form-control">
+								<f:selectItem itemLabel="Please select a Form" itemValue="NA" />
+								<f:selectItems value="#{formmanager.formMetaDataList}"
+									var="formItem" itemLabel="#{formItem.getDescription()}"
+									itemValue="#{formItem.getSource()}_#{formItem.formName}" />
+							</h:selectOneMenu>	
+					</div>
+						<div class="form-group col-md-4">
+											<label for="description">Description</label>
+											<h:inputText id="description" value="#{formmanager.description}" styleClass="form-control"  maxlength="500"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 500.">
+											<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+											</h:inputText>											
+											<h:message for="description" class="validation-message"/>
+								</div>
+					<div class="form-group col-md-4">
+							<label for="status">Status<font color="red">*</font></label>
+							<h:selectOneMenu id="status" value="#{formmanager.status}" styleClass="form-control" >
+								<f:selectItem itemValue="ACTIVE" itemLabel="ACTIVE" />
+								<f:selectItem itemValue="INACTIVE" itemLabel="INACTIVE" />
+							</h:selectOneMenu>
+							<h:message for="status" class="validation-message"/>
+					</div>
+				</div>
+					<div class="form-row">
+											<div class="form-group col-md-12">
+													<label for="comments">Notes</label>
+							 <h:inputTextarea id="comments" rows="4" cols="50" value="#{formmanager.comments}" styleClass="form-control"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
+							<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+							 </h:inputTextarea>
+							  <h:message for="comments" class="validation-message"/>	
+						</div>
+				</div>
+				<div class="text-right">
+						<p:commandButton value="Save" action="#{formmanager.save}" update="panel domModifier formTable" style="float:right;" data-dismiss="modal"  immediate="#{formmanager.id > 0 ? true : false}">
+							<p:ajax event="click" />
+						</p:commandButton>	
+						<p:commandButton value="Reset" action="#{formmanager.reset}" update="panel" style="float:right;" immediate="true">
+						<p:ajax event="click" update="panel" />
+						</p:commandButton>
+					</div>
+			</div>
+					</h:panelGroup>
+					
+
+						</div>
+						
+					</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>						
+<h:panelGroup id="domModifier">
+<script>
+  $( document ).ready(function() {
+    $(".ui-datatable" ).each(function() {
+      $( this ).removeClass("ui-datatable"); 
+      $( this ).removeClass("ui-widget"); 
+    }); 
+
+    $(".ui-datatable-tablewrapper" ).each(function() {
+      $( this ).removeAttr("class");
+    }); 
+      
+    $("table").each(function(){
+      var curTable = $(this);
+      $(this).addClass("table table-hover bg-white");
+      $(this).children().addClass("bg-light text-dark");
+    });
+
+    
+  });
+  
+
+</script>			
+	<style type="text/css">
+
+.modal-dialog {
+		max-width:50% !important;
+}
+
+.ui-datatable-odd,.ui-datatable-even td{
+  background: none !important;
+}
+
+
+.table thead th{
+ border-left: none !important;
+ border-right: none !important;
+ border-bottom: none !important;
+}
+
+.table tbody tr {
+ border-left: none !important;
+ border-right: none !important;
+}
+
+.ui-column-filter.ui-inputfield.ui-inputtext {
+  background: #fff !important;
+  border:none !important;
+}
+#formTable div {
+width: 100%;
+overflow: auto;
+}
+
+</style>	
+</h:panelGroup>							
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

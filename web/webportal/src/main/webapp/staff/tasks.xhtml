@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:oc="http://java.sun.com/jsf/composite/components/orchestration"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+	<title>Task Portal</title>
+	<h:outputStylesheet library="css" name="aot-style-base.css" />
+	<f:metadata>
+          <f:event type="preRenderView" listener="#{staffTask.getTask}"/>
+      </f:metadata>
+</h:head>
+<h:body>
+<ui:composition template="/template/staff/commonLayout.xhtml">
+<ui:define name="content">
+     <h:form id="pageContentForm">	
+     <h:panelGroup id="messagePanel">
+	<div class="alert alert-success alert-dismissible fade show" role="alert" id="successalert" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="switchDisplay('successalert');" >
+    <span aria-hidden="true">&#215;</span>
+  </button>
+  Application Approved.
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="failurealert" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="switchDisplay('failurealert');" >
+    <span aria-hidden="true">&#215;</span>
+  </button>
+  System Error Occurred. Contact Administrator.
+</div>
+</h:panelGroup>
+ <h:panelGroup rendered="#{staffTask.documentURL != null}">
+	<div style="float:right;padding-top:1%;padding-bottom:1%;">
+	       <h:commandButton value="Approve" class="newTaskButton" style="align:right" actionListener="#{staffTask.completeTask}" >
+					<f:ajax event="click" onerror="switchDisplay('failurealert');" onevent="switchDisplay('successalert');"/>
+				</h:commandButton>		
+	</div>
+</h:panelGroup>
+ <h:panelGroup rendered="#{staffTask.documentURL == null}">
+
+<div class="alert alert-light alert-dismissible fade show" role="alert" id="infoalert">
+No applications available for processing.
+</div>
+
+</h:panelGroup>
+	   <h:panelGroup rendered="#{staffTask.documentURL != null}">
+		<iframe id="smartform" name="pageframe" src="#{staffTask.documentURL}" height="700" width="100%" style="border:0px;" >
+		</iframe>
+		</h:panelGroup>
+		
+	</h:form>
+ </ui:define>
+</ui:composition>
+</h:body>
+</html>

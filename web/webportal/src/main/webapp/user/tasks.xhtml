@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Task Portal</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<f:metadata>
+          <f:event type="preRenderView" listener="#{userTask.getAllMappedForms}"/>
+      </f:metadata>
+</h:head>
+<h:body>
+<ui:composition template="/template/client/commonLayout.xhtml">
+<ui:define name="content">
+    <h:form id="activeForm">
+				<p:dataTable
+						id="formTable"
+						var="form" 
+						value="#{userTask.formList}"
+						selectionMode="single"
+						rowKey="#{form.mapId}" 
+						scrollable="true" scrollHeight="400">
+
+						<p:column>
+							<f:facet name="header">Formset Name</f:facet>
+					      #{form.formsetName}
+					   </p:column>
+					   <p:column>
+							<f:facet name="header">Form Name</f:facet>
+					      #{form.formName}
+					   </p:column>
+					   <p:column>
+							<f:facet name="header">Comments</f:facet>
+					      #{form.comments}
+					   </p:column>
+						<p:column>
+						<f:facet name="header">Create New</f:facet>
+						 <h:commandLink actionListener="#{userTask.openForm(form)}" target="_blank" type="submit">
+						 <i class="fa fa-edit"></i>
+						 </h:commandLink>
+						</p:column>
+					</p:dataTable>
+					
+	</h:form>
+ </ui:define>
+
+</ui:composition>
+</h:body>
+</html>

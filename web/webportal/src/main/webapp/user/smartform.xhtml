@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Task Portal</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+<ui:composition template="/template/client/commonLayout.xhtml">
+<ui:define name="content">
+<f:metadata>
+    <f:viewParam name="refId" value="#{smartformBean.refId}" />
+</f:metadata>
+    <h:form id="pageContentForm">	
+	<div style="float:right;padding-top:1%;padding-bottom:1%;">
+	       <h:commandButton value="Submit For Approval" class="newTaskButton" style="align:right">
+					<f:ajax event="click" listener="#{smartformBean.submitForReview}"/>
+				</h:commandButton>		
+	</div>
+	   <h:panelGroup rendered="#{smartformBean.getFormLocation() != null}">
+		<iframe id="smartform" name="pageframe" src="#{smartformBean.getFormLocation()}?refId=#{smartformBean.refId}" height="700" width="100%" style="border:0px;" >
+		</iframe>
+		</h:panelGroup>
+		
+	</h:form>
+ </ui:define>
+</ui:composition>
+</h:body>
+</html>
+
+

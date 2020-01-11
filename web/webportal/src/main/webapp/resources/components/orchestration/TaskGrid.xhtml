@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:oc="http://java.sun.com/jsf/composite/components/orchestration"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:composite="http://java.sun.com/jsf/composite"
+      >
+    
+    <composite:interface>
+    	<composite:attribute name="dataMap" required="true"/>  
+    </composite:interface>
+	
+
+
+    <composite:implementation>
+
+        <div class="row mt-4">
+            <div class="col-sm-12">
+              <div class="ui-card">
+                <div class="col-sm-12">
+                  <h3 class="float-left">List of Applications</h3>
+                </div>
+                <ul
+                class="nav nav-pills mb-3 fa-pull-right"
+                id="pills-tab"
+                role="tablist">
+                <ui:repeat  var="statusEntry" value="#{cc.attrs.dataMap.entrySet().toArray()}">
+                <li class="nav-item">
+                  <a
+                      class="nav-link #{statusEntry.key eq 'NEW' ? 'active' : ''}"
+                      id="pills-#{statusEntry.key}-tab"
+                      data-toggle="pill"
+                      href="#pills-#{statusEntry.key}"
+                      role="tab"
+                      aria-controls="pills-#{statusEntry.key}"
+                      aria-selected="#{statusEntry.key eq 'NEW' ? true : false}"
+                      >
+                      <h:outputText value="#{fn:toLowerCase(statusEntry.key.replaceAll('_',' '))}" style="text-transform: capitalize;"/>
+                  </a>
+                 </li>
+                 </ui:repeat>
+                 </ul>
+              <div class="tab-content" id="pills-tabContent">
+          <ui:repeat  var="statusEntry" value="#{cc.attrs.dataMap.entrySet().toArray()}">
+            <div
+            class="tab-pane fade #{statusEntry.key eq 'NEW' ? 'show active' : ''}"
+            id="pills-#{statusEntry.key}"
+            role="tabpanel"
+            aria-labelledby="pills-#{statusEntry.key}-tab"
+          >
+        <p:dataTable var="task" value="#{statusEntry.value}" widgetVar="taskTable_#{statusEntry.key}" rowClass="data-table-row" 
+        styleClass="table table-hover bg-white"
+			  >
+				<p:column sortBy="#{task.dataId}" filterBy="#{task.dataId}" filterMatchMode="contains" headerText="Submission ID">
+				  <h:outputText value="#{task.dataId}"/>
+			  </p:column>
+				<p:column sortBy="#{adminTask.getFormName(task.mapId)}" filterBy="#{adminTask.getFormName(task.mapId)}" filterMatchMode="contains" headerText="Form Name">
+				  <h:outputText value="#{adminTask.getFormName(task.mapId)}"/>
+				</p:column>
+				<p:column sortBy="#{task.createdTs}" filterBy="#{task.createdTs}" filterMatchMode="contains" headerText="Submitted Date">
+					  <h:outputText value="#{fn:replace(task.createdTs,'T',' ')}"/>
+          </p:column>
+          <p:column sortBy="#{task.updatedTs}" filterBy="#{task.updatedTs}" filterMatchMode="contains" headerText="Last Updated Date">
+					  <h:outputText value="#{fn:replace(task.updatedTs,'T',' ')}"/>
+        	</p:column>
+				<p:column headerText="Status">            
+					  <h:outputText value="#{task.status}"/>
+			  </p:column>
+				<p:column headerText="Summary">
+            <i
+            class="fa fa-eye fa-color"
+            data-toggle="modal"
+            data-target="##{adminTask.camundaTaskList.get(task.dataId).id}_staticBackdrop"
+          ></i>
+          <oc:CamundaTask
+            task="#{adminTask.camundaTaskList.get(task.dataId)}"
+          />
+					</p:column>
+					<p:column headerText="Application">
+                  <h:outputLink
+                    value="#{adminTask.getDocumentURL(task)}"
+                    target="_aotblank"
+                  >
+                    <i class="fa fa-eye fa-color"></i
+                  ></h:outputLink>
+          </p:column>
+          <p:column headerText="Approve" rendered="#{statusEntry.key eq 'NEW' and !request.isUserInRole('USER')}">
+              <p:commandLink
+              id="approve"
+              action="#{adminTask.ClaimAndCompleteTask(task)}"
+            >
+              <p:ajax event="click" />
+              <i class="fa fa-check-circle fa-color"></i>
+            </p:commandLink>
+          </p:column>
+      </p:dataTable> 
+    </div>    
+    </ui:repeat>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  $( document ).ready(function() {
+    $(".ui-datatable" ).each(function() {
+      $( this ).removeClass("ui-datatable"); 
+      $( this ).removeClass("ui-widget"); 
+    }); 
+
+    $(".ui-datatable-tablewrapper" ).each(function() {
+      $( this ).removeAttr("class");
+    }); 
+      
+    $("table").each(function(){
+      var curTable = $(this);
+      $(this).addClass("table table-hover bg-white");
+      $(this).children().addClass("bg-light text-dark");
+    });
+
+    
+  });
+</script>			
+	<style type="text/css">
+
+.modal-dialog {
+		max-width:50% !important;
+}
+
+.ui-datatable-odd,.ui-datatable-even td{
+  background: none !important;
+}
+
+.table thead th{
+ border-left: none !important;
+ border-right: none !important;
+ border-bottom: none !important;
+}
+
+.table tbody tr {
+ border-left: none !important;
+ border-right: none !important;
+}
+
+.ui-column-filter.ui-inputfield.ui-inputtext {
+  background: #fff !important;
+  border:none !important;
+}
+
+</style>	
+    </composite:implementation>
+</html>
