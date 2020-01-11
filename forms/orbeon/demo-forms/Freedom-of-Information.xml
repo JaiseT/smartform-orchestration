@@ -1,0 +1,670 @@
+<xh:html xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:xf="http://www.w3.org/2002/xforms"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ev="http://www.w3.org/2001/xml-events"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xxi="http://orbeon.org/oxf/xml/xinclude"
+         xmlns:xxf="http://orbeon.org/oxf/xml/xforms"
+         xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+         xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+         xmlns:exf="http://www.exforms.org/exf/1-0"
+         xmlns:fr="http://orbeon.org/oxf/xml/form-runner"
+         xmlns:saxon="http://saxon.sf.net/"
+         xmlns:sql="http://orbeon.org/oxf/xml/sql"
+         xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns:fb="http://orbeon.org/oxf/xml/form-builder"
+         fr:data-format-version="4.0.0">
+    <xh:head>
+        <xh:title>Freedom of Information</xh:title>
+        <xf:model id="fr-form-model" xxf:expose-xpath-types="true" xxf:analysis.calculate="true">
+
+            <!-- Main instance -->
+            <xf:instance id="fr-form-instance" xxf:exclude-result-prefixes="#all" xxf:index="id">
+                <form>
+                    <section-5>
+                        <grid-5>
+                            <control-12 filename="aot-logo.gif" mediatype="image/gif">/fr/service/persistence/crud/orbeon/builder/data/cede0290636a818b6348e4403ef98006407d0617/66745098e7addb9a5b04e525740f9f18dbe85060.bin</control-12>
+                            <control-14/>
+                            <control-15/>
+                        </grid-5>
+                    </section-5>
+                    <section-1>
+                        <grid-1>
+                            <control-1/>
+                            <control-2/>
+                            <control-3/>
+                            <control-5>2</control-5>
+                            <control-4/>
+                        </grid-1>
+                        
+                    </section-1>
+                    <section-2>
+                        <grid-4>
+                            <control-6/>
+                            <control-7/>
+                            <control-8/>
+                            <control-9/>
+                        </grid-4>
+                    </section-2>
+                    <section-3>
+                        <grid-2>
+                            <control-10/>
+                            <control-11/>
+                            <control-13/>
+                        </grid-2>
+                    </section-3>
+                    <section-4>
+                        <grid-3>
+                            <control-18/>
+                            <control-19/>
+                            <control-20/>
+                            <control-21>1</control-21>
+                        </grid-3>
+                    </section-4>
+                    <section-6>
+                        <grid-6>
+                            <control-25>1</control-25>
+                            <control-24 filename="" mediatype="" size=""/>
+                            <control-23/>
+                        </grid-6>
+                    </section-6>
+                    <section-8>
+                        <grid-8>
+                            <control-27/>
+                            <control-28/>
+                            <control-17/>
+                            <control-22/>
+                            <control-26/>
+                            <control-16/>
+                        </grid-8>
+                    </section-8>
+                </form>
+            </xf:instance>
+
+            <!-- Bindings -->
+            <xf:bind id="fr-form-binds" ref="instance('fr-form-instance')">
+                <xf:bind id="section-5-bind" ref="section-5" name="section-5">
+                    <xf:bind id="grid-5-bind" ref="grid-5" name="grid-5">
+                        <xf:bind id="control-12-bind" ref="control-12" name="control-12" type="xf:anyURI"/>
+                        <xf:bind id="control-14-bind" ref="control-14" name="control-14"/>
+                        <xf:bind id="control-15-bind" ref="control-15" name="control-15"/>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="section-1-bind" name="section-1" ref="section-1">
+                    <xf:bind id="grid-1-bind" ref="grid-1" name="grid-1">
+                        <xf:bind id="control-1-bind" name="control-1" ref="control-1" xxf:whitespace="trim"/>
+                        <xf:bind id="control-2-bind" ref="control-2" name="control-2" xxf:whitespace="trim"/>
+                        <xf:bind id="control-3-bind" ref="control-3" name="control-3" xxf:whitespace="trim"/>
+                        <xf:bind id="control-5-bind" ref="control-5" name="control-5"/>
+                        <xf:bind id="control-4-bind" ref="control-4" name="control-4"/>
+                    </xf:bind>
+                    
+                </xf:bind>
+                <xf:bind id="section-2-bind" ref="section-2" name="section-2">
+                    <xf:bind id="grid-4-bind" ref="grid-4" name="grid-4">
+                        <xf:bind id="control-6-bind" ref="control-6" name="control-6" xxf:whitespace="trim"/>
+                        <xf:bind id="control-7-bind" ref="control-7" name="control-7" xxf:whitespace="trim"/>
+                        <xf:bind id="control-8-bind" ref="control-8" name="control-8" xxf:whitespace="trim"/>
+                        <xf:bind id="control-9-bind" ref="control-9" name="control-9" xxf:whitespace="trim"/>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="section-3-bind" ref="section-3" name="section-3">
+                    <xf:bind id="grid-2-bind" ref="grid-2" name="grid-2">
+                        <xf:bind id="control-10-bind" ref="control-10" name="control-10" xxf:whitespace="trim"/>
+                        <xf:bind id="control-11-bind" ref="control-11" name="control-11" xxf:whitespace="trim"/>
+                        <xf:bind id="control-13-bind" ref="control-13" name="control-13" xxf:whitespace="trim"/>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="section-4-bind" ref="section-4" name="section-4">
+                    <xf:bind id="grid-3-bind" ref="grid-3" name="grid-3">
+                        <xf:bind id="control-18-bind" ref="control-18" name="control-18"/>
+                        <xf:bind id="control-19-bind" ref="control-19" name="control-19"/>
+                        <xf:bind id="control-20-bind" ref="control-20" name="control-20"/>
+                        <xf:bind id="control-21-bind" ref="control-21" name="control-21"/>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="section-8-bind" ref="section-8" name="section-8"
+                         relevant="xxf:get-request-parameter('pid') = 'O15F'">
+                    <xf:bind id="grid-8-bind" ref="grid-8" name="grid-8">
+                        <xf:bind id="control-16-bind" ref="control-16" name="control-16"/>
+                        <xf:bind id="control-17-bind" ref="control-17" name="control-17" xxf:whitespace="trim"/>
+                        <xf:bind id="control-22-bind" ref="control-22" name="control-22" type="xf:date"/>
+                        <xf:bind id="control-26-bind" ref="control-26" name="control-26" xxf:whitespace="trim"/>
+                        <xf:bind id="control-27-bind" ref="control-27" name="control-27" xxf:whitespace="trim"/>
+                        <xf:bind id="control-28-bind" ref="control-28" name="control-28"/>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="section-6-bind" ref="section-6" name="section-6" relevant="$control-21='Y'">
+                    <xf:bind id="grid-6-bind" ref="grid-6" name="grid-6">
+                        <xf:bind id="control-25-bind" ref="control-25" name="control-25"/>
+                        <xf:bind id="control-24-bind" ref="control-24" name="control-24" type="xf:anyURI"/>
+                        <xf:bind id="control-23-bind" ref="control-23" name="control-23" type="xf:date"/>
+                    </xf:bind>
+                </xf:bind>
+            </xf:bind>
+
+            <!-- Metadata -->
+            <xf:instance id="fr-form-metadata" xxf:readonly="true" xxf:exclude-result-prefixes="#all">
+                <metadata>
+                    <application-name>information</application-name>
+                    <form-name>Freedom-of-Information</form-name>
+                    <title xml:lang="en">Freedom of Information</title>
+                    <description xml:lang="en"/>
+                    <created-with-version>2019.1.0.201910220019 CE</created-with-version>
+                    <updated-with-version>2019.1.0.201910220019 CE</updated-with-version>
+                </metadata>
+            </xf:instance>
+
+            <!-- Attachments -->
+            <xf:instance id="fr-form-attachments" xxf:exclude-result-prefixes="#all">
+                <attachments/>
+            </xf:instance>
+
+            <!-- All form resources -->
+            <xf:instance xxf:readonly="true" id="fr-form-resources" xxf:exclude-result-prefixes="#all">
+                <resources>
+                    <resource xml:lang="en">
+                        <control-25>
+                            <label>PREFERRED METHOD OF ACCESS TO RECORDS</label>
+                            <hint/>
+                            <item>
+                                <label>EXAMINE ORIGINAL</label>
+                                <hint/>
+                                <value>1</value>
+                            </item>
+                            <item>
+                                <label>RECEIVE COPY</label>
+                                <hint/>
+                                <value>2</value>
+                            </item>
+                        </control-25>
+                        <control-24>
+                            <label>YOUR SIGNATURE</label>
+                            <hint/>
+                        </control-24>
+                        <control-23>
+                            <label>DATE SIGNED (YYYY MMM DD)</label>
+                            <hint/>
+                        </control-23>
+                        <control-27>
+                            <label>REQUEST NO.</label>
+                            <hint/>
+                        </control-27>
+                        <control-28>
+                            <label>REQUEST CATEGORY</label>
+                            <hint/>
+                            <item>
+                                <label>ACCESS TO GENERAL INFORMATION(ARCS 292-30)</label>
+                                <hint/>
+                                <value>1</value>
+                            </item>
+                            <item>
+                                <label>ACCESS TO PERSONAL INFORMATION(ARCS 292-40)</label>
+                                <hint/>
+                                <value>2</value>
+                            </item>
+                        </control-28>
+                        <control-17>
+                            <label>REQUEST CODE</label>
+                            <hint/>
+                        </control-17>
+                        <control-22>
+                            <label>DATE RECEIVED (YYYY MMM DD)</label>
+                            <hint/>
+                        </control-22>
+                        <control-26>
+                            <label>NAME OF PUBLIC BODY RECEIVING REQUEST</label>
+                            <hint/>
+                        </control-26>
+                        <control-16>
+                            <text xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+                                  xmlns:p="http://www.orbeon.com/oxf/pipeline">&lt;div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="left: 75.6px; top: 1148.61px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.00537);"&gt;YOU MAY MAKE A REQUEST FOR ACCESS TO RECORDS WITHOU&lt;/span&gt;&lt;span style="left: 460.5px; top: 1148.61px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.995561);"&gt;T USING THIS FORM, PROVIDED&lt;/span&gt;&lt;span style="left: 642.6px; top: 1148.61px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.00585);"&gt; YOU DO SO IN WRITING.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="left: 75.6px; top: 1162.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.9887);"&gt;BIRTH DATE AND CORRECTIONS SERVICE &lt;/span&gt;&lt;span style="left: 329.8px; top: 1162.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.993552);"&gt;NO. ARE REQUIRED TO VERIFY THE INDI&lt;/span&gt;&lt;span style="left: 560.2px; top: 1162.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.999234);"&gt;VIDUAL REQUESTING THE INFORMATION &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="left: 75.6px; top: 1176.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.991285);"&gt;PERSONAL INFORMATION CONTAINED ON THIS FORM IS COLLECTED UNDER THE &lt;/span&gt;&lt;span style="left: 559.4px; top: 1176.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.01585);"&gt;FREEDOM OF INFORMATION AND PROTECTION OF PRIVACY ACT &lt;/span&gt;&lt;span style="left: 87.3px; top: 1190.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.983791);"&gt;AND WILL BE USED ONLY FOR THE PURPOS&lt;/span&gt;&lt;span style="left: 338.1px; top: 1190.51px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.990848);"&gt;E OF RESPONDING TO YOUR REQUEST&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</text>
+                        </control-16>
+                        <section-8>
+                            <label>FOR PUBLIC BODY USE ONLY</label>
+                        </section-8>
+                        <control-18>
+                            <label>NFORMATION REQUESTED(PLEASE DESCRIBE THE RECORDS YOU ARE REQUESTING. BE AS SPECIFIC AS POSSIBLE, AS THIS WILL ASSIST THE REQUEST PROCESS.  ATTACH A SEPARATE SHEET IF THE SPACE BELOW IS NOT SUFFICIENT.</label>
+                            <hint/>
+                        </control-18>
+                        <control-19>
+                            <text xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+                                  xmlns:p="http://www.orbeon.com/oxf/pipeline">&lt;div&gt;&lt;strong&gt;&lt;span style="left: 699.2px; top: 493.85px; font-size: 10px; font-family: sans-serif; transform: scaleX(0.971013);"&gt;PLEASE SPECIFY ANY REFERENCE OR FILE &lt;/span&gt;&lt;span style="left: 699.2px; top: 505.95px; font-size: 10px; font-family: sans-serif; transform: scaleX(0.99323);"&gt;NUMBER(S), IF KNOWN&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;</text>
+                        </control-19>
+                        <control-20>
+                            <text xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+                                  xmlns:p="http://www.orbeon.com/oxf/pipeline">&lt;div&gt;&lt;span style="left: 92.1004px; top: 825.511px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.988272);"&gt;ARE YOU REQUESTING ACCESS TO ANOTHER PERSON’S PERSONAL INFORMATION?&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt; &lt;/div&gt;
+&lt;div&gt;&lt;span style="left: 92.1004px; top: 825.511px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.988272);"&gt;&lt;span style="left: 92.1004px; top: 839.411px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.02087);"&gt;(IF SO, PLEASE ATTACH, AS APPROPRIATE:&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span style="left: 92.1004px; top: 825.511px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.988272);"&gt;&lt;span style="left: 92.1004px; top: 853.411px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.979106);"&gt;a) THAT PERSON’S SIGNED CONSENT FOR DISCLOSURE, OR&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span style="left: 92.1004px; top: 825.511px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(0.988272);"&gt;&lt;span style="left: 92.1004px; top: 867.311px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.00169);"&gt;b) PROOF OF AUTH&lt;/span&gt;&lt;span style="left: 205.1px; top: 867.311px; font-size: 11.7px; font-family: sans-serif; transform: scaleX(1.00441);"&gt;ORITY TO ACT ON THAT PERSON’S BEHALF.)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;</text>
+                        </control-20>
+                        <control-21>
+                            <label/>
+                            <hint/>
+                            <item>
+                                <label>YES</label>
+                                <hint/>
+                                <value>Y</value>
+                            </item>
+                            <item>
+                                <label>NO</label>
+                                <hint/>
+                                <value>N</value>
+                            </item>
+                        </control-21>
+                        <control-12>
+                            <label/>
+                        </control-12>
+                        <control-14>
+                            <text xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+                                  xmlns:p="http://www.orbeon.com/oxf/pipeline">&lt;div style="padding-left: 60px; font-size: 20px;"&gt;&lt;strong&gt;     FREEDOM OF INFORMATION AND &lt;/strong&gt;&lt;/div&gt;
+&lt;div style="padding-left: 30px; font-size: 20px;"&gt;&lt;strong&gt;                   PROTECTION OF PRIVACY &lt;/strong&gt;&lt;/div&gt;
+&lt;div style="padding-left: 30px;"&gt; &lt;/div&gt;
+&lt;div style="padding-left: 30px; font-size: 24px;"&gt;&lt;strong&gt;REQUEST FOR ACCESS TO RECORDS&lt;/strong&gt;&lt;/div&gt;</text>
+                        </control-14>
+                        <control-15>
+                            <text xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+                                  xmlns:p="http://www.orbeon.com/oxf/pipeline">&lt;div&gt;&lt;span style="left: 790.2px; top: 92.925px; font-size: 15px; font-family: sans-serif; transform: scaleX(1.02114);"&gt;ARCS NO.&lt;/span&gt;&lt;span style="left: 826.9px; top: 110.887px; font-size: 16.7px; font-family: sans-serif; transform: scaleX(0.990648);"&gt;292-30/&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span style="left: 826.9px; top: 130.886px; font-size: 16.7px; font-family: sans-serif; transform: scaleX(0.990648);"&gt;292-40/&lt;/span&gt;&lt;/div&gt;</text>
+                        </control-15>
+                        <control-10>
+                            <label>DAY PHONE NO.</label>
+                            <hint/>
+                        </control-10>
+                        <control-11>
+                            <label>ALTERNATE PHONE NO</label>
+                            <hint/>
+                        </control-11>
+                        <control-13>
+                            <label>E-MAIL ADDRESS</label>
+                            <hint/>
+                        </control-13>
+                        <control-6>
+                            <label>STREET, APARTMENT NO., P.O. BOX, R.R. NO</label>
+                            <hint/>
+                        </control-6>
+                        <control-7>
+                            <label>CITY / TOWN</label>
+                            <hint/>
+                        </control-7>
+                        <control-8>
+                            <label>PROVINCE / COUNTRY</label>
+                            <hint/>
+                        </control-8>
+                        <control-9>
+                            <label>POSTAL CODE</label>
+                            <hint/>
+                        </control-9>
+                        <section-1>
+                            <label>YOUR NAME</label>
+                        </section-1>
+                        <control-1>
+                            <label>LAST NAME</label>
+                            <hint/>
+                            <alert/>
+                        </control-1>
+                        <control-2>
+                            <label>MIDDLE NAME</label>
+                            <hint/>
+                        </control-2>
+                        <control-3>
+                            <label>FIRST NAME</label>
+                            <hint/>
+                        </control-3>
+                        <control-5>
+                            <label/>
+                            <hint/>
+                            <item>
+                                <label>MISS</label>
+                                <hint/>
+                                <value>1</value>
+                            </item>
+                            <item>
+                                <label>MS</label>
+                                <hint/>
+                                <value>2</value>
+                            </item>
+                            <item>
+                                <label>MRS</label>
+                                <hint/>
+                                <value>3</value>
+                            </item>
+                        </control-5>
+                        <control-4>
+                            <label/>
+                            <hint/>
+                            <item>
+                                <label>MR</label>
+                                <hint/>
+                                <value>4</value>
+                            </item>
+                        </control-4>
+                        <section-5>
+                            <label/>
+                            <help/>
+                        </section-5>
+                        <section-2>
+                            <label>YOUR ADDRESS</label>
+                            <help/>
+                        </section-2>
+                        <section-3>
+                            <label>YOUR CONTACT INFORMATION</label>
+                            <help/>
+                        </section-3>
+                        <section-4>
+                            <label>DETAILS OF REQUESTED INFORMATION</label>
+                            <help/>
+                        </section-4>
+                        <section-6>
+                            <label/>
+                        </section-6>
+                        
+                    </resource>
+                </resources>
+            </xf:instance>
+
+        </xf:model>
+    </xh:head>
+    <xh:body>
+        <fr:view>
+            <fr:body xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:xbl="http://www.w3.org/ns/xbl"
+                     xmlns:oxf="http://www.orbeon.com/oxf/processors">
+                <fr:section id="section-5-section" bind="section-5-bind">
+                    <xf:label ref="$form-resources/section-5/label"/>
+                    <fr:grid id="grid-5-grid" bind="grid-5-bind">
+                        <fr:c x="1" y="1" w="4">
+                            <fr:image xmlns="http://orbeon.org/oxf/xml/form-builder"
+                                      xmlns:xxbl="http://orbeon.org/oxf/xml/xbl"
+                                      id="control-12-control"
+                                      class="fr-static-attachment"
+                                      bind="control-12-bind">
+                                <xf:label ref="$form-resources/control-12/label"/>
+                         
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </fr:image>
+                        </fr:c>
+                        <fr:c x="5" y="1" w="7">
+                            <fr:explanation xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-14-control"
+                                            bind="control-14-bind">
+                                <fr:text ref="$form-resources/control-14/text" mediatype="text/html"/>
+                            </fr:explanation>
+                        </fr:c>
+                        <fr:c x="12" y="1" w="1" h="1">
+                            <fr:explanation xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-15-control"
+                                            bind="control-15-bind">
+                                <fr:text ref="$form-resources/control-15/text" mediatype="text/html"/>
+                            </fr:explanation>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-1-section" bind="section-1-bind">
+                    <xf:label ref="$form-resources/section-1/label" mediatype="text/html"/>
+                    <fr:grid id="grid-1-grid" bind="grid-1-bind">
+                        <fr:c y="1" x="1" w="3">
+                            <xf:input id="control-1-control" bind="control-1-bind">
+                                    <xf:label ref="$form-resources/control-1/label"/>
+                                    <xf:hint ref="$form-resources/control-1/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                                
+                            </fr:c>
+                        <fr:c x="4" y="1" w="3" h="1">
+                            <xf:input id="control-2-control" bind="control-2-bind">
+                                <xf:label ref="$form-resources/control-2/label"/>
+                                <xf:hint ref="$form-resources/control-2/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c y="1" x="7" w="3">
+                            <xf:input id="control-3-control" bind="control-3-bind">
+                                <xf:label ref="$form-resources/control-3/label"/>
+                                <xf:hint ref="$form-resources/control-3/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="10" y="1" w="2" h="1">
+                            <xf:select1 id="control-5-control" appearance="full" bind="control-5-bind">
+                                <xf:label ref="$form-resources/control-5/label"/>
+                                <xf:hint ref="$form-resources/control-5/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                <xf:itemset ref="$form-resources/control-5/item">
+                                    <xf:label ref="label" mediatype="text/html"/>
+                                    <xf:value ref="value"/>
+                                    <xf:hint ref="hint" mediatype="text/html"/>
+                                </xf:itemset>
+                            </xf:select1>
+                        </fr:c>
+                        <fr:c x="12" y="1" w="1" h="1">
+                            <fr:open-select1 xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-4-control"
+                                             bind="control-4-bind">
+                                <xf:label ref="$form-resources/control-4/label"/>
+                                <xf:hint ref="$form-resources/control-4/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                <xf:itemset ref="$form-resources/control-4/item">
+                                    <xf:label ref="label"/>
+                                    <xf:value ref="value"/>
+                                    <xf:hint ref="hint"/>
+                                </xf:itemset>
+                            </fr:open-select1>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-2-section" bind="section-2-bind">
+                    <xf:label ref="$form-resources/section-2/label"/>
+                    <fr:grid id="grid-4-grid" bind="grid-4-bind">
+                        <fr:c x="1" y="1" w="4">
+                            <xf:input id="control-6-control" bind="control-6-bind">
+                                <xf:label ref="$form-resources/control-6/label"/>
+                                <xf:hint ref="$form-resources/control-6/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="5" y="1" w="3" h="1">
+                            <xf:input id="control-7-control" bind="control-7-bind">
+                                <xf:label ref="$form-resources/control-7/label"/>
+                                <xf:hint ref="$form-resources/control-7/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="8" y="1" w="3">
+                            <xf:input id="control-8-control" bind="control-8-bind">
+                                <xf:label ref="$form-resources/control-8/label"/>
+                                <xf:hint ref="$form-resources/control-8/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="11" y="1" w="2" h="1">
+                            <xf:input id="control-9-control" bind="control-9-bind">
+                                <xf:label ref="$form-resources/control-9/label"/>
+                                <xf:hint ref="$form-resources/control-9/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-3-section" bind="section-3-bind">
+                    <xf:label ref="$form-resources/section-3/label"/>
+                    <fr:grid id="grid-2-grid" bind="grid-2-bind">
+                        <fr:c x="1" y="1" w="4">
+                            <xf:input id="control-10-control" bind="control-10-bind">
+                                <xf:label ref="$form-resources/control-10/label"/>
+                                <xf:hint ref="$form-resources/control-10/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="5" y="1" w="3" h="1">
+                            <xf:input id="control-11-control" bind="control-11-bind">
+                                <xf:label ref="$form-resources/control-11/label"/>
+                                <xf:hint ref="$form-resources/control-11/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="8" y="1" w="5" h="1">
+                            <xf:input id="control-13-control" bind="control-13-bind">
+                                <xf:label ref="$form-resources/control-13/label"/>
+                                <xf:hint ref="$form-resources/control-13/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-4-section" bind="section-4-bind">
+                    <xf:label ref="$form-resources/section-4/label"/>
+                    <fr:grid id="grid-3-grid" bind="grid-3-bind">
+                        <fr:c x="1" y="1" w="9">
+                            <xf:textarea id="control-18-control" bind="control-18-bind">
+                                <xf:label ref="$form-resources/control-18/label"/>
+                                <xf:hint ref="$form-resources/control-18/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:textarea>
+                        </fr:c>
+                        <fr:c x="10" y="1" w="3">
+                            <fr:explanation xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-19-control"
+                                            bind="control-19-bind">
+                                <fr:text ref="$form-resources/control-19/text" mediatype="text/html"/>
+                            </fr:explanation>
+                        </fr:c>
+                        <fr:c x="1" y="2" w="9">
+                            <fr:explanation xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-20-control"
+                                            bind="control-20-bind">
+                                <fr:text ref="$form-resources/control-20/text" mediatype="text/html"/>
+                            </fr:explanation>
+                        </fr:c>
+                        <fr:c x="10" y="2" w="3">
+                            <xf:select1 id="control-21-control" appearance="full" bind="control-21-bind">
+                                <xf:label ref="$form-resources/control-21/label"/>
+                                <xf:hint ref="$form-resources/control-21/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                <xf:itemset ref="$form-resources/control-21/item">
+                                    <xf:label ref="label"/>
+                                    <xf:value ref="value"/>
+                                    <xf:hint ref="hint"/>
+                                </xf:itemset>
+                            </xf:select1>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-6-section" bind="section-6-bind">
+                    <xf:label ref="$form-resources/section-6/label"/>
+                    <fr:grid id="grid-6-grid" bind="grid-6-bind">
+                        <fr:c x="1" y="1" w="6">
+                            <xf:select id="control-25-control" appearance="full" bind="control-25-bind">
+                                <xf:label ref="$form-resources/control-25/label"/>
+                                <xf:hint ref="$form-resources/control-25/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                <xf:itemset ref="$form-resources/control-25/item">
+                                    <xf:label ref="label"/>
+                                    <xf:value ref="value"/>
+                                    <xf:hint ref="hint"/>
+                                </xf:itemset>
+                            </xf:select>
+                        </fr:c>
+                        <fr:c x="7" y="1" w="3">
+                            <fr:attachment xmlns="http://orbeon.org/oxf/xml/form-builder"
+                                           xmlns:xxbl="http://orbeon.org/oxf/xml/xbl"
+                                           id="control-24-control"
+                                           class="fr-attachment"
+                                           bind="control-24-bind">
+                                <xf:label ref="$form-resources/control-24/label"/>
+                                <xf:hint ref="$form-resources/control-24/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </fr:attachment>
+                        </fr:c>
+                        <fr:c x="10" y="1" w="3" h="1">
+                            <fr:date xmlns:xxbl="http://orbeon.org/oxf/xml/xbl"
+                                     xmlns:DateSupport="java:org.orbeon.xbl.DateSupportJava"
+                                     id="control-23-control"
+                                     bind="control-23-bind">
+                                <xf:label ref="$form-resources/control-23/label"/>
+                                <xf:hint ref="$form-resources/control-23/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </fr:date>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="section-8-section" bind="section-8-bind">
+                    <xf:label ref="$form-resources/section-8/label"/>
+                    <fr:grid id="grid-8-grid" bind="grid-8-bind">
+                        <fr:c x="1" y="1" w="6">
+                            <xf:input id="control-27-control" bind="control-27-bind">
+                                <xf:label ref="$form-resources/control-27/label"/>
+                                <xf:hint ref="$form-resources/control-27/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="7" y="1" w="6" h="1">
+                            <xf:select id="control-28-control" appearance="full" bind="control-28-bind">
+                                <xf:label ref="$form-resources/control-28/label"/>
+                                <xf:hint ref="$form-resources/control-28/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                <xf:itemset ref="$form-resources/control-28/item">
+                                    <xf:label ref="label"/>
+                                    <xf:value ref="value"/>
+                                    <xf:hint ref="hint"/>
+                                </xf:itemset>
+                            </xf:select>
+                        </fr:c>
+                        <fr:c x="1" y="2" w="3">
+                            <xf:input id="control-17-control" bind="control-17-bind">
+                                <xf:label ref="$form-resources/control-17/label"/>
+                                <xf:hint ref="$form-resources/control-17/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="4" y="2" w="3" h="1">
+                            <fr:date xmlns:xxbl="http://orbeon.org/oxf/xml/xbl"
+                                     xmlns:DateSupport="java:org.orbeon.xbl.DateSupportJava"
+                                     id="control-22-control"
+                                     bind="control-22-bind">
+                                <xf:label ref="$form-resources/control-22/label"/>
+                                <xf:hint ref="$form-resources/control-22/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </fr:date>
+                        </fr:c>
+                        <fr:c x="7" y="2" w="6" h="1">
+                            <xf:input id="control-26-control" bind="control-26-bind">
+                                <xf:label ref="$form-resources/control-26/label"/>
+                                <xf:hint ref="$form-resources/control-26/hint"/>
+                        
+                                <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                            </xf:input>
+                        </fr:c>
+                        <fr:c x="1" y="3" w="12">
+                            <fr:explanation xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="control-16-control"
+                                            bind="control-16-bind">
+                                <fr:text ref="$form-resources/control-16/text" mediatype="text/html"/>
+                            </fr:explanation>
+                        </fr:c>
+                    </fr:grid>
+                </fr:section>
+            </fr:body>
+        </fr:view>
+    </xh:body>
+</xh:html>
