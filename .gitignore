@@ -1,0 +1,8 @@
+/.metadata/
+web/webportal/.classpath
+web/webportal/.factorypath
+api/orchestration-client-connector/LOG_PATH_IS_UNDEFINED
+api/orchestration-client-connector/target/
+api/process-accelerator-context/target/
+api/orchestration-processor-core/target/
+api/process-accelerator-services/target/
