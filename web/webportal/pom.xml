@@ -9,6 +9,7 @@
 		<groupId>com.aot.codelabs</groupId>
 		<artifactId>process-accelerator-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
   </parent>
   
   <properties>
