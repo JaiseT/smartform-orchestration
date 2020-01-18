@@ -11,7 +11,7 @@
 	
 	 <parent>
 		<groupId>com.aot.codelabs</groupId>
-		<artifactId>process-accelerator-parent</artifactId>
+		<artifactId>process-accelerator-api-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
     </parent>
 	

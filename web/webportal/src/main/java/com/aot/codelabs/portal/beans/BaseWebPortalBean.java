@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
 import com.aot.codelabs.processor.model.FormSet;
@@ -19,6 +20,7 @@ import com.aot.codelabs.processor.model.WorkProcess;
 
 public class BaseWebPortalBean {
 	
+		
 	@Autowired
     private RestTemplate restTemplate;
 	
@@ -30,7 +32,18 @@ public class BaseWebPortalBean {
 	
 	private Map<String,List<String>> msgList;
 	
+	@Autowired
+	private RestTemplateBuilder restTemplateBuilder;
 	
+	
+	public RestTemplateBuilder getRestTemplateBuilder() {
+		return restTemplateBuilder;
+	}
+
+	public void setRestTemplateBuilder(RestTemplateBuilder restTemplateBuilder) {
+		this.restTemplateBuilder = restTemplateBuilder;
+	}
+
 	public RestTemplate getRestTemplate() {
 		return restTemplate;
 	}

@@ -9,6 +9,7 @@
 		<groupId>com.aot.codelabs</groupId>
 		<artifactId>process-accelerator-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
   </parent>
   
   <properties>
@@ -69,9 +70,11 @@
 		<dependency>
 		  <groupId>com.fasterxml.jackson.dataformat</groupId>
 		  <artifactId>jackson-dataformat-xml</artifactId>
-		  <version>2.10.0</version>
-		</dependency>
-		
+		  </dependency>
+		<dependency>
+		  <groupId>com.fasterxml.jackson.datatype</groupId>
+		  <artifactId>jackson-datatype-joda</artifactId>
+		  </dependency>
 		<dependency>
     		<groupId>javax.el</groupId>
     		<artifactId>javax.el-api</artifactId>

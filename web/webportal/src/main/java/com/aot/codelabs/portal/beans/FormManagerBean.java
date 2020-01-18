@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.RestTemplate;
 
 import com.aot.codelabs.forms.support.orbeon.FormMetaData;
 import com.aot.codelabs.processor.model.FormSet;
@@ -67,7 +68,8 @@ public class FormManagerBean extends BaseWebPortalBean implements Serializable {
 			return;
 		}
 		logger.debug(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase());
-		FormMetaData[] forms = getRestTemplate().getForObject(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase(), FormMetaData[].class);
+		RestTemplate restTemplate = getRestTemplateBuilder().basicAuthentication("smartforms","workflow").build();
+		FormMetaData[] forms = restTemplate.getForObject(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase(), FormMetaData[].class);
 		setFormMetaDataList(Arrays.asList(forms));
 		if(CollectionUtils.isEmpty(formMetaDataList)) {
 			logger.error("Error occured in fetching forms.");
