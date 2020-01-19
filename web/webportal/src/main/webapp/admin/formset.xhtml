@@ -88,7 +88,7 @@
 					<div class="form-group col-md-4">
 											<label for="description">Description</label>
 											<h:inputText id="description" value="#{formsetmanager.description}" styleClass="form-control" maxlength="500"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 500.">
-												<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+												<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]*"/>
 											</h:inputText>											
 											<h:message for="description" class="validation-message"/>
 					</div>
@@ -105,7 +105,7 @@
 						<div class="form-group col-md-12">
 							<label for="comments">Comments</label>
 							 <h:inputTextarea id="comments" rows="4" cols="50" value="#{formsetmanager.comments}" styleClass="form-control" maxlength="1000"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+								<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]*"/>
 							 </h:inputTextarea>
 							  <h:message for="comments" class="validation-message"/>	
 				    	</div>
