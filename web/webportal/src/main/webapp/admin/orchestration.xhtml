@@ -10,7 +10,7 @@
 	<title>FormSet Manager</title>
 	<f:metadata>
 		<f:event type="preRenderView"
-			listener="#{formsetmanager.loadConfiguration}" />
+			listener="#{orchestrationmanager.loadConfiguration}" />
 	</f:metadata>
 </h:head>
 <h:body>
@@ -127,7 +127,7 @@
 											<div class="form-group col-md-12">
 													<label for="comments">Comments</label>
 							 <h:inputTextarea id="comments" rows="4" cols="50" value="#{orchestrationmanager.comments}" styleClass="form-control"   validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
-							 	<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+							 	<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]*"/>
 							 </h:inputTextarea>
 							  <h:message for="comments" class="validation-message"/>	
 						</div>

@@ -103,7 +103,7 @@
 					<div class="form-group col-md-4">
 											<label for="description">Description</label>
 											<h:inputText id="description" value="#{processmanager.description}" styleClass="form-control"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 500.">
-											<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
+											<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]*"/>
 											</h:inputText>											
 											<h:message for="description" class="validation-message"/>
 						</div>
