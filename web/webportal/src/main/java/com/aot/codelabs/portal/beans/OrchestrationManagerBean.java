@@ -89,8 +89,8 @@ public class OrchestrationManagerBean extends BaseWebPortalBean  implements Seri
 	public void refreshFormOptions(ValueChangeEvent event)  {
 		formList =  new ArrayList<WebForm>();
 		String inp = (String) event.getNewValue();
-		if(StringUtils.isEmpty(inp)) {
-			logger.info("Formset value cannot be empty.");
+		if(StringUtils.isEmpty(inp) || inp.equals("NA")) {
+			logger.info("Formset value cannot be empty or 'NA'.");
 			return;
 		}
 		for(FormSet wobj : formsetList) {
@@ -106,7 +106,7 @@ public class OrchestrationManagerBean extends BaseWebPortalBean  implements Seri
 		setSelectedFormset("NA");
 		setSelectedForm("NA");
 		setSelectedProcess("NA");
-		setStatus("NA");
+		setStatus(null);
 		setComments(null);
 		setId(0);
 		setMsgList(new HashMap<String,List<String>>());
@@ -146,11 +146,13 @@ public class OrchestrationManagerBean extends BaseWebPortalBean  implements Seri
 	
 	public void populate(SmartWebFormProcess process) {
 		logger.debug("Populate WorkProcess");
+		setComments("TEST COMMENT");
 		setSelectedFormset(process.getFormsetId()+"_"+process.getFormsetName());
 		setSelectedForm(process.getFormId()+"_"+process.getFormName());
 		setSelectedProcess(process.getProcessId()+"_"+process.getProcessName());
 		setStatus(process.getStatus());
-		setComments(process.getComments());
+		
+		//setComments(process.getComments());
 		setId(process.getMapId());
 		setMsgList(new HashMap<String,List<String>>());
 	}
