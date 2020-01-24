@@ -7,7 +7,7 @@
 	xmlns:cc="http://java.sun.com/jsf/composite/components">
 
 <h:head>
-	<title>FormSet Manager</title>
+	<title>Orchestration Manager</title>
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{orchestrationmanager.loadConfiguration}" />
@@ -23,7 +23,7 @@
 								<div class="ui-card">
 										<div class="col-sm-12"><h3>List of Workflow Settings</h3></div>
 							<div class="fa-pull-right">
-							<p:commandLink  id="addLink" actionListener="#{orchestrationmanager.reset}" style="float:right;" update="panel" immediate="true">
+							<p:commandLink  id="addLink" actionListener="#{orchestrationmanager.reset}" style="float:right;" update="panel">
 							<p:ajax event="click" oncomplete="openModal()"/>
 							<i class="fa fa-plus-circle" style="color: #0000ff;padding:5px;font-weight:bold;"  data-toggle="modal" data-target="#workflowWrapper">&#160;Add</i>
 						</p:commandLink>									
@@ -79,7 +79,7 @@
 							<div class="col-sm-12 ">
 					
 					<h:panelGroup id="panel" style="padding-bottom:3%">
-					<cc:messagePanel id="msgPanel" messages="#{formsetmanager.msgList}"/>
+					<cc:messagePanel id="msgPanel" messages="#{orchestrationmanager.msgList}"/>
 					<div class="col-sm-12">
 					<div class="form-row">
 										<div class="form-group col-md-4">
@@ -127,17 +127,17 @@
 											<div class="form-group col-md-12">
 													<label for="comments">Comments</label>
 							 <h:inputTextarea id="comments" rows="4" cols="50" value="#{orchestrationmanager.comments}" styleClass="form-control"   validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
-							 	<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]*"/>
+							 	<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:; ]*"/>
 							 </h:inputTextarea>
 							  <h:message for="comments" class="validation-message"/>	
 						</div>
 				</div>
 				<div class="text-right">
-						<p:commandButton value="Save" action="#{orchestrationmanager.save}" update="panel domModifier workflowTable" style="float:right;" data-dismiss="modal"  immediate="#{orchestrationmanager.id > 0 ? true : false}">
+						<p:commandButton value="Save" action="#{orchestrationmanager.save}" update="panel domModifier workflowTable" style="float:right;">
 							<p:ajax event="click" />
 						</p:commandButton>	
-						<p:commandButton value="Reset" action="#{orchestrationmanager.reset}" update="panel" style="float:right;" immediate="true">
-						<p:ajax event="click" update="panel" />
+						<p:commandButton value="Reset" action="#{orchestrationmanager.reset}" update="panel" style="float:right;">
+						<p:ajax event="click" />
 						</p:commandButton>
 					</div>
 			</div>
@@ -149,7 +149,9 @@
 					</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <p:commandButton value="Close" actionListener="#{orchestrationmanager.reset}" style="float:right;">
+			<p:ajax event="click" oncomplete="data-dismiss='workflowWrapper'" />
+		</p:commandButton>
       </div>
     </div>
   </div>
