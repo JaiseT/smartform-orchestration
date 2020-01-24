@@ -159,7 +159,8 @@ public class UserTaskBean extends BaseWebPortalBean  implements Serializable {
 		logger.info("Orchestration client ID: {}",task.getProcessInstanceId());
 		//Create new process-flow record in application datasource.
 		txnObj.setProcessInstanceId(task.getProcessInstanceId());
-		txnObj.setStatus(OrchestrationState.NEW.name());
+		//txnObj.setStatus(OrchestrationState.NEW.name()); //FIXME what's causing state change of txnObj?
+		txnObj.setStatus("NEW"); //FIXME temporary fix for issue with txnObj getting reinitialized.
 		txnObj.setMapId(form.getMapId());
 		txnObj.setProcessAttribs("TASKID="+task.getId());
 		txnObj.setProcessOwnerGroup(getGroupName(form.getFormName()));
