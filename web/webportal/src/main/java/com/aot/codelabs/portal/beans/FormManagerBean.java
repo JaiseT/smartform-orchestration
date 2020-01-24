@@ -70,7 +70,6 @@ public class FormManagerBean extends BaseWebPortalBean implements Serializable {
 		logger.debug(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase());
 		RestTemplate restTemplate = getRestTemplateBuilder().basicAuthentication("smartforms","workflow").build();
 		FormMetaData[] forms = restTemplate.getForObject(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase(), FormMetaData[].class);
-//		FormMetaData[] forms = getRestTemplate().getForObject(getFormServiceURI()+"/service/persistence/form/"+getValue(inp).toLowerCase(), FormMetaData[].class);
 		setFormMetaDataList(Arrays.asList(forms));
 		if(CollectionUtils.isEmpty(formMetaDataList)) {
 			logger.error("Error occured in fetching forms.");
