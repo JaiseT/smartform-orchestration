@@ -2,7 +2,5 @@
 # Dockerfile
 FROM tomcat:8
 
-MAINTAINER Twinkle Joseph <twinkleljoseph@aot-technologies.com>
-
-ADD process-accelerator-services/target/*.war /usr/local/tomcat/webapps
+COPY /api/process-accelerator-services/target/process-accelerator.war /usr/local/tomcat/webapps
  

@@ -1,7 +1,6 @@
+#Author : Twinkle Joseph
 # Dockerfile
 FROM tomcat:8
-
-MAINTAINER Twinkle Joseph <twinkleljoseph@aot-technologies.com>
 
 #Define tomcat home and keycloak version
 ENV TOMCAT_HOME=/usr/local/tomcat \
@@ -15,5 +14,5 @@ RUN cd ${TOMCAT_HOME}/lib/ \
 
   && tar zxvf keycloak-tomcat-adapter-dist-${KEYCLOAK_VERSION}.tar.gz	 
 
-ADD target/*.war /usr/local/tomcat/webapps
+COPY /web/webportal/target/webportal.war /usr/local/tomcat/webapps
 
