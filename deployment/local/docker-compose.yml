@@ -48,5 +48,38 @@ services:
       - '${WEB_PORT}:8080'
     depends_on:
       - services
+  #Dependencies for orbeon server
+  orbeon-db:
+    build: 
+        context: ./../..
+        dockerfile: orbeon/Dockerfile-postgres
+    image: postgres/orbeon
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_ORBEON_USER}
+      - POSTGRES_PASSWORD=${DB_ORBEON_PASSWORD}
+      - POSTGRES_DB=${DB_ORBEON_DB}
+    volumes:
+      - "./orbeondata:/var/lib/postgresql/data_orbeon"  
+    ports:
+      - '${ORBEON_DB_PORT}:5432'  
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_ORBEON_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5  
+  orbeon: 
+    build: 
+        context: ./../..
+        dockerfile: orbeon/Dockerfile
+        args:
+            tag: "tag-release-2018.2.1-ce"
+            build: "orbeon-2018.2.1.201902072242-CE"
+            postgre_jdbc_version: "42.2.9"
+    image: orbeon-ce
+    ports: 
+      - "${ORBEON_PORT}:8080"
+    depends_on:
+      - orbeon-db        
 volumes:
   dbdata:
