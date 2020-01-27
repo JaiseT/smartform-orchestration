@@ -2,6 +2,7 @@ FROM tomcat:8
 
 ARG tag
 ARG build
+ARG postgre_jdbc_version
 
 RUN \
     cd /tmp \
@@ -25,8 +26,8 @@ RUN \
     && mv postgresql-$postgre_jdbc_version.jar /usr/local/orbeon/WEB-INF/lib
 
 #Copy tomcat and orbeon config files
-COPY  /orbeon/postgres/tomcat/ /usr/local/tomcat/
-COPY  /orbeon/postgres/orbeon/ /usr/local/orbeon/
+COPY  /orbeon/tomcat/ /usr/local/tomcat/
+COPY  /orbeon/orbeon/ /usr/local/orbeon/
 
 
 

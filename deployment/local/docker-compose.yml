@@ -1,7 +1,7 @@
 #Author : Twinkle Joseph
 version: '3'
 services:
-  smartforms-db:
+  forms-workflow-db:
     build: 
         context: ./../..
         dockerfile: db/Dockerfile-postgres
@@ -10,36 +10,37 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=${DB_POSTGRES_USER}
-      - POSTGRES_PASSWORD=${DB_POSTGRES_PASSWORD}
-      - POSTGRES_DB=${DB_POSTGRES_DB}
+      - POSTGRES_USER=${DB_SMARTWKFLOW_USER}
+      - POSTGRES_PASSWORD=${DB_SMARTWKFLOW_PASSWORD}
+      - POSTGRES_DB=${DB_SMARTWKFLOW_DB}
     ports:
-      - '${APP_DB_PORT}:5432'  
+      - '${DB_SMARTWKFLOW_PORT}:5432'  
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${DB_POSTGRES_USER}']
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_SMARTWKFLOW_USER}']
       interval: 10s
       timeout: 5s
       retries: 5
-  services:
+  forms-workflow-api:
     build:
       context: ./../..
       dockerfile: api/Dockerfile
     ports:
       - '${API_PORT}:8080'
     environment:
-      - DATABASE_URL=postgresql://${DB_POSTGRES_USER}:${DB_POSTGRES_PASSWORD}@db:5432/${DB_POSTGRES_DB}
+      - JAVA_OPTS= -Dspring.datasource.url="jdbc:postgresql://forms-workflow-db:${DB_SMARTWKFLOW_PORT}/${DB_SMARTWKFLOW_DB}" -Dspring.datasource.username=${DB_SMARTWKFLOW_USER} -Dspring.datasource.password=${DB_SMARTWKFLOW_PASSWORD}
       - KEYCLOAK_URL=${KEYCLOAK_URL}
       - KEYCLOAK_REALM=${KEYCLOAK_REALM}
       - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
       - KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
       - KEYCLOAK_CLIENT_ADMIN=${KEYCLOAK_CLIENT_ADMIN}
       - KEYCLOAK_CLIENT_ADMIN_SECRET=${KEYCLOAK_CLIENT_ADMIN_SECRET}
+      
   web-portal:
     build:
       context: ./../..
       dockerfile: web/webportal/Dockerfile
       args:
-        - API_BASE_URL=http://localhost:${API_PORT}/
+        - API_BASE_URL=http://forms-workflow-api:${API_PORT}/
         - KEYCLOAK_URL=${KEYCLOAK_URL}
         - KEYCLOAK_REALM=${KEYCLOAK_REALM}
         - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
@@ -47,7 +48,7 @@ services:
     ports:
       - '${WEB_PORT}:8080'
     depends_on:
-      - services
+      - forms-workflow-api
   #Dependencies for orbeon server
   orbeon-db:
     build: 
@@ -62,7 +63,7 @@ services:
     volumes:
       - "./orbeondata:/var/lib/postgresql/data_orbeon"  
     ports:
-      - '${ORBEON_DB_PORT}:5432'  
+      - '${DB_ORBEON_PORT}:5432'  
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U ${DB_ORBEON_USER}']
       interval: 10s
@@ -77,6 +78,8 @@ services:
             build: "orbeon-2018.2.1.201902072242-CE"
             postgre_jdbc_version: "42.2.9"
     image: orbeon-ce
+    environment:
+      - JAVA_OPTS= -Ddb.url=orbeon-db -Ddb.port=${DB_ORBEON_PORT} -Ddb.database=${DB_ORBEON_DB} -Ddb.username=${DB_ORBEON_USER} -Ddb.password=${DB_ORBEON_PASSWORD}
     ports: 
       - "${ORBEON_PORT}:8080"
     depends_on:
