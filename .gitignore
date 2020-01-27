@@ -24,3 +24,6 @@ api/process-accelerator-services/.classpath
 api/process-accelerator-services/.factorypath
 api/process-accelerator-services/.project
 web/webportal/.project
+api/.settings/
+.settings/
+.project
