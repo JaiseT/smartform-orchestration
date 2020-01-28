@@ -97,6 +97,7 @@
 					I hereby acknowledge the digital submission of application. 
 
                 <h:commandButton value="Submit For Approval" action="#{userTask.submitForReview(userTask.formURI)}" class="btn btn-primary nextBtn pull-right">
+									<f:actionListener binding="#{userTask.submitForReview(userTask.formURI)}" />
 				</h:commandButton>		
             </div>
         </div>
