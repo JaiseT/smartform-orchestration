@@ -8,7 +8,7 @@ services:
     image: postgres/smartworkflow
     restart: always
     volumes:
-      - dbdata:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/app_data
     environment:
       - POSTGRES_USER=${DB_SMARTWKFLOW_USER}
       - POSTGRES_PASSWORD=${DB_SMARTWKFLOW_PASSWORD}
@@ -40,7 +40,9 @@ services:
       context: ./../..
       dockerfile: web/webportal/Dockerfile
       args:
+        - JAVA_OPTS= -Dspring.profiles.active=dev
         - API_BASE_URL=http://forms-workflow-api:${API_PORT}/
+        - ORBEON_BASE_URL=http://orbeon:${ORBEON_PORT}/
         - KEYCLOAK_URL=${KEYCLOAK_URL}
         - KEYCLOAK_REALM=${KEYCLOAK_REALM}
         - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
@@ -61,7 +63,7 @@ services:
       - POSTGRES_PASSWORD=${DB_ORBEON_PASSWORD}
       - POSTGRES_DB=${DB_ORBEON_DB}
     volumes:
-      - "./orbeondata:/var/lib/postgresql/data_orbeon"  
+      - "./orbeondata:/var/lib/postgresql/orbeon_data"  
     ports:
       - '${DB_ORBEON_PORT}:5432'  
     healthcheck:
