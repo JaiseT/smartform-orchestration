@@ -13,3 +13,9 @@ RUN cd ${TOMCAT_HOME}/lib/ \
 
 COPY /web/webportal/target/webportal.war /usr/local/tomcat/webapps
 
+RUN cd /usr/local/tomcat/webapps \ 
+  && unzip webportal.war -d ./webportal
+
+COPY  /keycloak/keycloak.json /usr/local/tomcat/webapps/webportal/WEB-INF/keycloak.json
+
+

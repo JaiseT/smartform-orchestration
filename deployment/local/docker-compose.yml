@@ -1,4 +1,4 @@
-#Author : Twinkle Joseph
+#Author : Jaise Thomas
 version: '3'
 services:
   forms-workflow-db:
@@ -40,13 +40,11 @@ services:
       context: ./../..
       dockerfile: web/webportal/Dockerfile
       args:
-        - JAVA_OPTS= -Dspring.profiles.active=dev
         - API_BASE_URL=http://forms-workflow-api:${API_PORT}/
         - ORBEON_BASE_URL=http://orbeon:${ORBEON_PORT}/
         - KEYCLOAK_URL=${KEYCLOAK_URL}
-        - KEYCLOAK_REALM=${KEYCLOAK_REALM}
-        - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
-        - KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
+        - JAVA_OPTS= -Dspring.profiles.active=dev
+        
     ports:
       - '${WEB_PORT}:8080'
     depends_on:
