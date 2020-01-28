@@ -1,0 +1,10 @@
+{
+"realm": "Smartform-orchestration",
+  "auth-server-url": "https://keycloak.aottech.com/auth",
+  "ssl-required": "none",
+  "resource": "smartform-portal",
+  "public-client": true,
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
