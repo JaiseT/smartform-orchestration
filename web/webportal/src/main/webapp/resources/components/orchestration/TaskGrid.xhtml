@@ -56,19 +56,22 @@
         <p:dataTable var="task" value="#{statusEntry.value}" widgetVar="taskTable_#{statusEntry.key}" rowClass="data-table-row" 
         styleClass="table table-hover bg-white"
 			  >
-				<p:column sortBy="#{task.dataId}" filterBy="#{task.dataId}" filterMatchMode="contains" headerText="Submission ID">
-				  <h:outputText value="#{task.dataId}"/>
-			  </p:column>
+
 				<p:column sortBy="#{adminTask.getFormName(task.mapId)}" filterBy="#{adminTask.getFormName(task.mapId)}" filterMatchMode="contains" headerText="Form Name">
 				  <h:outputText value="#{adminTask.getFormName(task.mapId)}"/>
 				</p:column>
+			<!--	<p:column sortBy="#{task.dataId}" filterBy="#{task.dataId}" filterMatchMode="contains" headerText="Form T">
+				  <h:outputText value="#{task.dataId}"/>
+			  </p:column> -->
+			  
+				
 				<p:column sortBy="#{task.createdTs}" filterBy="#{task.createdTs}" filterMatchMode="contains" headerText="Submitted Date">
 					  <h:outputText value="#{fn:replace(task.createdTs,'T',' ')}"/>
           </p:column>
           <p:column sortBy="#{task.updatedTs}" filterBy="#{task.updatedTs}" filterMatchMode="contains" headerText="Last Updated Date">
 					  <h:outputText value="#{fn:replace(task.updatedTs,'T',' ')}"/>
         	</p:column>
-				<p:column headerText="Status">            
+			<!--	<p:column headerText="Status">            
 					  <h:outputText value="#{task.status}"/>
 			  </p:column>
 				<p:column headerText="Summary">
@@ -88,7 +91,7 @@
                   >
                     <i class="fa fa-eye fa-color"></i
                   ></h:outputLink>
-          </p:column>
+          </p:column> -->
           <p:column headerText="Approve" rendered="#{statusEntry.key eq 'NEW' and !request.isUserInRole('USER')}">
               <p:commandLink
               id="approve"
