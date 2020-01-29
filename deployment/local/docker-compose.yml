@@ -41,8 +41,8 @@ services:
       context: ./../..
       dockerfile: web/webportal/Dockerfile
       args:
-        - API_BASE_URL=http://forms-workflow-api:${API_PORT}/
-        - ORBEON_BASE_URL=http://orbeon:${ORBEON_PORT}/
+        - API_BASE_URL=http://forms-workflow-api:8080/
+        - ORBEON_BASE_URL=http://orbeon:8080/
         - KEYCLOAK_URL=${KEYCLOAK_URL}
         - JAVA_OPTS= -Dspring.profiles.active=test
         
