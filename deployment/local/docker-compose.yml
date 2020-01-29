@@ -1,4 +1,5 @@
 #Author : Jaise Thomas
+#Docker compose file for forms-workflow applicaton
 version: '3'
 services:
   forms-workflow-db:
@@ -27,7 +28,7 @@ services:
     ports:
       - '${API_PORT}:8080'
     environment:
-      - JAVA_OPTS= -Dspring.datasource.url="jdbc:postgresql://forms-workflow-db:${DB_SMARTWKFLOW_PORT}/${DB_SMARTWKFLOW_DB}" -Dspring.datasource.username=${DB_SMARTWKFLOW_USER} -Dspring.datasource.password=${DB_SMARTWKFLOW_PASSWORD}
+      - JAVA_OPTS= -Dspring.profiles.active=test -Dspring.datasource.url="jdbc:postgresql://forms-workflow-db:5432/${DB_SMARTWKFLOW_DB}" -Dspring.datasource.username=${DB_SMARTWKFLOW_USER} -Dspring.datasource.password=${DB_SMARTWKFLOW_PASSWORD}
       - KEYCLOAK_URL=${KEYCLOAK_URL}
       - KEYCLOAK_REALM=${KEYCLOAK_REALM}
       - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
@@ -43,46 +44,12 @@ services:
         - API_BASE_URL=http://forms-workflow-api:${API_PORT}/
         - ORBEON_BASE_URL=http://orbeon:${ORBEON_PORT}/
         - KEYCLOAK_URL=${KEYCLOAK_URL}
-        - JAVA_OPTS= -Dspring.profiles.active=dev
+        - JAVA_OPTS= -Dspring.profiles.active=test
         
     ports:
       - '${WEB_PORT}:8080'
     depends_on:
       - forms-workflow-api
-  #Dependencies for orbeon server
-  orbeon-db:
-    build: 
-        context: ./../..
-        dockerfile: orbeon/Dockerfile-postgres
-    image: postgres/orbeon
-    restart: always
-    environment:
-      - POSTGRES_USER=${DB_ORBEON_USER}
-      - POSTGRES_PASSWORD=${DB_ORBEON_PASSWORD}
-      - POSTGRES_DB=${DB_ORBEON_DB}
-    volumes:
-      - "./orbeondata:/var/lib/postgresql/orbeon_data"  
-    ports:
-      - '${DB_ORBEON_PORT}:5432'  
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${DB_ORBEON_USER}']
-      interval: 10s
-      timeout: 5s
-      retries: 5  
-  orbeon: 
-    build: 
-        context: ./../..
-        dockerfile: orbeon/Dockerfile
-        args:
-            tag: "tag-release-2018.2.1-ce"
-            build: "orbeon-2018.2.1.201902072242-CE"
-            postgre_jdbc_version: "42.2.9"
-    image: orbeon-ce
-    environment:
-      - JAVA_OPTS= -Ddb.url=orbeon-db -Ddb.port=${DB_ORBEON_PORT} -Ddb.database=${DB_ORBEON_DB} -Ddb.username=${DB_ORBEON_USER} -Ddb.password=${DB_ORBEON_PASSWORD}
-    ports: 
-      - "${ORBEON_PORT}:8080"
-    depends_on:
-      - orbeon-db        
+
 volumes:
   dbdata:

@@ -1,0 +1,27 @@
+#Author : Jaise Thomas
+version: '3'
+services:
+  camunda-db:
+      image: postgres
+      volumes:
+        - dbdata:/var/lib/postgresql/camunda_data
+      environment:
+        POSTGRES_DB: process-engine
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: admin1234
+      ports:
+        - '5435:5432'  
+  camunda:
+      image: camunda/camunda-bpm-platform:latest
+      environment:
+        - DB_DRIVER=org.postgresql.Driver
+        - DB_URL=jdbc:postgresql://camunda-db:5432/process-engine
+        - DB_USERNAME=postgres
+        - DB_PASSWORD=admin1234
+        - WAIT_FOR=camunda-db:5432
+      ports:
+        - 9083:8080
+      depends_on:
+        - camunda-db       
+volumes:
+  dbdata:
