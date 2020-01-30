@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/orbeon" 
+    docBase="/usr/local/orbeon"
+    reloadable="false"
+    override="true"
+    allowLinking="true"
+    >
+    <Resource name="jdbc/postgresql" auth="Container" type="javax.sql.DataSource"        
+        initialSize="3" maxActive="10" maxIdle="10" maxWait="30000"
+        driverClassName="org.postgresql.Driver"
+        poolPreparedStatements="true"
+        validationQuery="select 1"
+        testOnBorrow="true"
+        username="${db.username}"
+        password="${db.password}"
+        url="jdbc:postgresql://${db.url}/${db.database}?useUnicode=true&amp;characterEncoding=UTF8&amp;socketTimeout=30&amp;tcpKeepAlive=true"/>
+</Context>

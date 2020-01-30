@@ -6,136 +6,140 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:cc="http://java.sun.com/jsf/composite/components">
 
-<h:head>
-	<title>FormSet Manager</title>
-	<f:metadata>
-		<f:event type="preRenderView"
+	<h:head>
+		<title>FormSet Manager</title>
+		<f:metadata>
+			<f:event type="preRenderView"
 			listener="#{formsetmanager.loadConfiguration}" />
-	</f:metadata>
-</h:head>
-<h:body>
-	<ui:composition template="/template/admin/commonLayout.xhtml">
-		<ui:define name="content">
-		<h:form id="fsManagerForm" prependId="false">
+		</f:metadata>
+	</h:head>
+	<h:body>
+		<ui:composition template="/template/admin/commonLayout.xhtml">
+			<ui:define name="content">
+				<h:form id="fsManagerForm" prependId="false">
 					<div class="row mt-4" id="testdiv">
 						<div class="col-sm-12">
-								
-								<div class="ui-card">
-										<div class="col-sm-12"><h3>List of Formset</h3></div>
-							<div class="fa-pull-right">
-							<p:commandLink  id="addLink" actionListener="#{formsetmanager.reset}" style="float:right;" update="panel" immediate="true">
-							<p:ajax event="click" oncomplete="openModal()"/>
-							<i class="fa fa-plus-circle" style="color: #0000ff;padding:5px;font-weight:bold;"  data-toggle="modal" data-target="#formsetWrapper">&#160;Add</i>
-							</p:commandLink>									
-							</div>
-							
-									
-									
-		<p:dataTable id="formsetTable" var="entry" value="#{formsetmanager.formsetList}" widgetVar="formset" rowClass="data-table-row" 
+
+							<div class="ui-card">
+								<div class="col-sm-12"><h3>List of Formset</h3></div>
+								<div class="fa-pull-right">
+									<p:commandLink  id="addLink" actionListener="#{formsetmanager.reset}" style="float:right;" update="panel">
+										<p:ajax event="click" oncomplete="openModal('model')"/>
+										<i class="fa fa-plus-circle" style="color: #0000ff;padding:5px;font-weight:bold;"  data-toggle="modal" data-target="#formsetWrapper">&#160;Add</i>
+									</p:commandLink>									
+								</div>
+
+
+
+								<p:dataTable id="formsetTable" var="entry" value="#{formsetmanager.formsetList}" widgetVar="formset" rowClass="data-table-row" 
         styleClass="table table-hover bg-white">
-			  
-				<p:column sortBy="#{entry.formsetName}" filterBy="#{entry.formsetName}" filterMatchMode="contains" headerText="Name">
-				  <h:outputText value="#{entry.formsetName}"/>
-			  </p:column>
-			  <p:column sortBy="#{entry.formsetDescription}" filterBy="#{entry.formsetDescription}" filterMatchMode="contains" headerText="Description">
-				  <h:outputText value="#{entry.formsetDescription}"/>
-			  </p:column>
-			  <p:column sortBy="#{entry.status}" filterBy="#{entry.status}" filterMatchMode="contains" headerText="Status">
-				  <h:outputText value="#{entry.status}"/>
-			  </p:column>
-			  <p:column sortBy="#{entry.comments}" filterBy="#{entry.comments}" filterMatchMode="contains" headerText="Notes">
-				  <h:outputText value="#{entry.comments}"/>
-			  </p:column>
-			   <p:column headerText="Action" >
-             
-						<p:commandLink  id="editLink" actionListener="#{formsetmanager.populate(entry)}" style="float:right;" update="panel">
-							<p:ajax event="click" oncomplete="openModal('formsetWrapper')"/>
-							<i class="fa fa-edit fa-color"></i>
-						</p:commandLink>	
-			</p:column>
-			  </p:dataTable>
-					
+
+									<p:column sortBy="#{entry.formsetName}" filterBy="#{entry.formsetName}" filterMatchMode="contains" headerText="Name">
+										<h:outputText value="#{entry.formsetName}"/>
+									</p:column>
+									<p:column sortBy="#{entry.formsetDescription}" filterBy="#{entry.formsetDescription}" filterMatchMode="contains" headerText="Description">
+										<h:outputText value="#{entry.formsetDescription}"/>
+									</p:column>
+									<p:column sortBy="#{entry.status}" filterBy="#{entry.status}" filterMatchMode="contains" headerText="Status">
+										<h:outputText value="#{entry.status}"/>
+									</p:column>
+									<p:column sortBy="#{entry.comments}" filterBy="#{entry.comments}" filterMatchMode="contains" headerText="Notes">
+										<h:outputText value="#{entry.comments}"/>
+									</p:column>
+									<p:column headerText="Action" >
+
+										<p:commandLink  id="editLink" actionListener="#{formsetmanager.populate(entry)}" update="panel" style="float:right;">
+											<p:ajax event="click" oncomplete="openModal('formsetWrapper')"/>
+
+											<i class="fa fa-edit fa-color"></i>
+										</p:commandLink>	
+									</p:column>
+								</p:dataTable>
+
 
 							</div>
 						</div>
 					</div>
 
-					
+
 					<div class="modal fade" id="formsetWrapper" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Formset</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      
-        </button>
-      </div>
-      <div class="modal-body">
-				<div class="row">
-							
-							<div class="col-sm-12 ">
-					
-					<h:panelGroup id="panel" style="padding-bottom:3%">
-					<cc:messagePanel id="msgPanel" messages="#{formsetmanager.msgList}"/>
-					<div class="col-sm-12">
-					<div class="form-row">
-										<div class="form-group col-md-4">
-											<label for="name">Name<font color="red">*</font></label>
-											<h:inputText id="name" value="#{formsetmanager.name}" styleClass="form-control" required="true" requiredMessage="Name is mandatory.">
-											</h:inputText>
-											<h:message for="name" class="validation-message"/>
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="staticBackdropLabel">Formset</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-sm-12 ">
+
+											<h:panelGroup id="panel" style="padding-bottom:3%">
+												<cc:messagePanel id="msgPanel" messages="#{formsetmanager.msgList}"/>
+												<div class="col-sm-12">
+													<div class="form-row">
+														<div class="form-group col-md-4">
+															<label for="name">Name<font color="red">*</font></label>
+															<h:inputText id="name" value="#{formsetmanager.name}" styleClass="form-control">
+															</h:inputText>
+															<!--<h:message for="name" class="validation-message"/>-->
+														</div>
+														<div class="form-group col-md-4">
+															<label for="description">Description</label>
+															<h:inputText id="description" value="#{formsetmanager.description}" styleClass="form-control"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 500.">
+																<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:; ]*"/>
+															</h:inputText>											
+															<h:message for="description" class="validation-message"/>
+														</div>
+														<div class="form-group col-md-4">
+															<label for="status">Status<font color="red">*</font></label>
+															<h:selectOneMenu id="status" value="#{formsetmanager.status}" styleClass="form-control" >
+																<f:selectItem itemValue="ACTIVE" itemLabel="ACTIVE" />
+																<f:selectItem itemValue="INACTIVE" itemLabel="INACTIVE" />
+															</h:selectOneMenu>
+															<h:message for="status" class="validation-message"/>
+														</div>
+													</div>
+													<div class="form-row">
+														<div class="form-group col-md-12">
+															<label for="comments">Comments</label>
+															<h:inputTextarea id="comments" rows="4" cols="50" value="#{formsetmanager.comments}" styleClass="form-control" maxlength="1000"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
+																<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:; ]*"/>
+															</h:inputTextarea>
+															<h:message for="comments" class="validation-message"/>	
+														</div>
+													</div>
+													<div class="text-right">
+														<p:commandButton value="Save" actionListener="#{formsetmanager.save}" update="panel domModifier formsetTable" style="float:right;">
+															<p:ajax event="click"/>
+														</p:commandButton>	
+
+														<p:commandButton value="Reset" actionListener="#{formsetmanager.reset}" update="panel" style="float:right;">
+															<p:ajax event="click" />
+														</p:commandButton>
+													</div>
+												</div>
+											</h:panelGroup>
+
+
 										</div>
-					<div class="form-group col-md-4">
-											<label for="description">Description</label>
-											<h:inputText id="description" value="#{formsetmanager.description}" styleClass="form-control" maxlength="500"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 500.">
-												<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
-											</h:inputText>											
-											<h:message for="description" class="validation-message"/>
-					</div>
-					<div class="form-group col-md-4">
-							<label for="status">Status<font color="red">*</font></label>
-							<h:selectOneMenu id="status" value="#{formsetmanager.status}" styleClass="form-control" >
-								<f:selectItem itemValue="ACTIVE" itemLabel="ACTIVE" />
-								<f:selectItem itemValue="INACTIVE" itemLabel="INACTIVE" />
-							</h:selectOneMenu>
-							<h:message for="status" class="validation-message"/>
-					</div>
-				</div>
-					<div class="form-row">
-						<div class="form-group col-md-12">
-							<label for="comments">Comments</label>
-							 <h:inputTextarea id="comments" rows="4" cols="50" value="#{formsetmanager.comments}" styleClass="form-control" maxlength="1000"  validatorMessage="Allowed characters are A-Za-z0-9,;_-:. of length 1000.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_.+-,:;]"/>
-							 </h:inputTextarea>
-							  <h:message for="comments" class="validation-message"/>	
-				    	</div>
-					</div>
-				<div class="text-right">
-					<p:commandButton value="Save" action="#{formsetmanager.save}" update="panel domModifier formsetTable" style="float:right;" data-dismiss="modal" immediate="#{formsetmanager.id > 0 ? true : false}">
-							<p:ajax event="click" />
-						</p:commandButton>	
 
-						<p:commandButton value="Reset" action="#{formsetmanager.reset}" update="panel" style="float:right;" immediate="true">
-						<p:ajax event="click" update="panel" />
-						</p:commandButton>
-					</div>
-			</div>
-					</h:panelGroup>
-					
-
+									</div>
+								</div>
+								<div class="modal-footer">
+									<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+									<p:commandButton value="Close" actionListener="#{formsetmanager.reset}">
+										<p:ajax event="click" oncomplete="data-dismiss='formsetWrapper'" />
+									</p:commandButton>
+								</div>
+							</div>
 						</div>
-						
-					</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>	
+					</div>	
 
-<h:panelGroup id="domModifier">
-<script>
+					<h:panelGroup id="domModifier">
+						<script>
   $( document ).ready(function() {
     $(".ui-datatable" ).each(function() {
       $( this ).removeClass("ui-datatable"); 
@@ -145,23 +149,30 @@
     $(".ui-datatable-tablewrapper" ).each(function() {
       $( this ).removeAttr("class");
     }); 
-      
+
     $("table").each(function(){
       var curTable = $(this);
       $(this).addClass("table table-hover bg-white");
       $(this).children().addClass("bg-light text-dark");
     });
 
-    
-  });
-  
 
-</script>			
-	<style type="text/css">
+  });
+
+
+						</script>			
+						<style type="text/css">
 
 .modal-dialog {
 		max-width:50% !important;
 }
+<!--
+.ui-close-button{
+		float:right;
+		color: #fff;
+		background-color: #6c757d;
+		border-color: #6c757d;
+}-->
 
 .ui-datatable-odd,.ui-datatable-even td{
   background: none !important;
@@ -189,11 +200,11 @@ width: 100%;
 overflow: auto;
 }
 
-</style>	
-</h:panelGroup>			
-			</h:form>
-		</ui:define>
+						</style>	
+					</h:panelGroup>			
+				</h:form>
+			</ui:define>
 
-	</ui:composition>
-</h:body>
+		</ui:composition>
+	</h:body>
 </html>

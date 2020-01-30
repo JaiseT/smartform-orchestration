@@ -1,0 +1,55 @@
+#Author : Jaise Thomas
+#Docker compose file for forms-workflow applicaton
+version: '3'
+services:
+  forms-workflow-db:
+    build: 
+        context: ./../..
+        dockerfile: db/Dockerfile-postgres
+    image: postgres/smartworkflow
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql/app_data
+    environment:
+      - POSTGRES_USER=${DB_SMARTWKFLOW_USER}
+      - POSTGRES_PASSWORD=${DB_SMARTWKFLOW_PASSWORD}
+      - POSTGRES_DB=${DB_SMARTWKFLOW_DB}
+    ports:
+      - '${DB_SMARTWKFLOW_PORT}:5432'  
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_SMARTWKFLOW_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  forms-workflow-api:
+    build:
+      context: ./../..
+      dockerfile: api/Dockerfile
+    ports:
+      - '${API_PORT}:8080'
+    environment:
+      - JAVA_OPTS= -Dspring.profiles.active=test -Dspring.datasource.url="jdbc:postgresql://forms-workflow-db:5432/${DB_SMARTWKFLOW_DB}" -Dspring.datasource.username=${DB_SMARTWKFLOW_USER} -Dspring.datasource.password=${DB_SMARTWKFLOW_PASSWORD}
+      - KEYCLOAK_URL=${KEYCLOAK_URL}
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM}
+      - KEYCLOAK_CLIENT=${KEYCLOAK_CLIENT}
+      - KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET}
+      - KEYCLOAK_CLIENT_ADMIN=${KEYCLOAK_CLIENT_ADMIN}
+      - KEYCLOAK_CLIENT_ADMIN_SECRET=${KEYCLOAK_CLIENT_ADMIN_SECRET}
+      
+  web-portal:
+    build:
+      context: ./../..
+      dockerfile: web/webportal/Dockerfile
+      args:
+        - API_BASE_URL=http://forms-workflow-api:8080/
+        - ORBEON_BASE_URL=http://orbeon:8080/
+        - KEYCLOAK_URL=${KEYCLOAK_URL}
+        - JAVA_OPTS= -Dspring.profiles.active=test
+        
+    ports:
+      - '${WEB_PORT}:8080'
+    depends_on:
+      - forms-workflow-api
+
+volumes:
+  dbdata:

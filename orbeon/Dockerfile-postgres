@@ -1,0 +1,3 @@
+FROM postgres
+
+COPY /orbeon/postgres/*.sql /docker-entrypoint-initdb.d

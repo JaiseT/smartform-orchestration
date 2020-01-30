@@ -87,8 +87,8 @@ public class FormManagerBean extends BaseWebPortalBean implements Serializable {
 	}
 	
 	public void reset(){
-		setSelectedFormset(null);
-		setSelectedForm(null);
+		setSelectedFormset("NA");
+		setSelectedForm("NA");
 		setDescription(null);
 		setStatus(null);
 		setComments(null);
